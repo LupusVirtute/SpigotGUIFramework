@@ -1,5 +1,6 @@
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
+import com.lupus.gui.SelectableItem;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 // This Test tests literally everything that needs to be tested
 // more tests is basically useless
@@ -84,6 +86,13 @@ public class TestPaginator {
 			ItemStack itemToCompare = itemStacks[i];
 			ItemStack item = mock.getInventory().getItem(j);
 			assertEquals(itemToCompare, item);
+			int testValue = MockSelectable.testValue;
+			if (item instanceof SelectableItem){
+				((SelectableItem)item).run();
+				assertEquals(testValue+1,MockSelectable.testValue);
+			}
+			else
+				fail("Item Supposed to be selectable item but wasn't");
 			if (j >= 35){
 				j=0;
 				mock.nextPage();
@@ -104,6 +113,13 @@ public class TestPaginator {
 			ItemStack itemToCompare = itemStacks[i];
 			ItemStack item = mock.getInventory().getItem(j);
 			assertEquals(itemToCompare, item);
+			int testValue = MockSelectable.testValue;
+			if (item instanceof SelectableItem){
+				((SelectableItem)item).run();
+				assertEquals(testValue+1,MockSelectable.testValue);
+			}
+			else
+				fail("Item Supposed to be selectable item but wasn't");
 			if (j <= 0){
 				j=35;
 				mock.previousPage();
