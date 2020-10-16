@@ -68,6 +68,8 @@ public abstract class Paginator extends GUI {
 	@Override
 	public void click(Player player, InventoryClickEvent e) {
 		ItemStack clickedItem = e.getCurrentItem();
+		if (clickedItem == null)
+			return;
 		if (clickedItem.isSimilar(previous)){
 			if (pageCounter >= 0)
 				previousPage();
