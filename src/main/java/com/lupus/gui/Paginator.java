@@ -84,9 +84,11 @@ public abstract class Paginator extends GUI {
 	}
 	public void onSlotInteraction(Player player,InventoryClickEvent e){
 		ItemStack item = e.getCurrentItem();
+		SelectableItem selItem = null;
 		if (item != null)
-			if (item instanceof SelectableItem)
-				((SelectableItem)item).run();
+			 selItem = items.stream().filter(o->o.isSimilar(item)).findFirst().orElse(null);
+		if (selItem != null)
+			selItem.run();
 	}
 	public void nextPage(){
 		setPage(pageCounter+1);
@@ -99,7 +101,7 @@ public abstract class Paginator extends GUI {
 	}
 	public void setPage(int page){
 		pageCounter = page;
-		for (int i=0;i<=36;i++){
+		for (int i=0;i<=35;i++){
 			inv.setItem(i,new ItemStack(Material.AIR));
 		}
 		for (int i=page*36,j=i+36;i<j;i++){

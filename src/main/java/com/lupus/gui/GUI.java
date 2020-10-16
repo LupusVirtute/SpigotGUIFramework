@@ -12,9 +12,9 @@ import java.util.List;
 
 public abstract class GUI implements IGUI, InventoryHolder {
 	protected Inventory inv;
-	protected List<ItemStack> items = new ArrayList<>();
+	protected List<SelectableItem> items = new ArrayList<>();
 	@Override
-	public void addItemStack(ItemStack item){
+	public void addItemStack(SelectableItem item){
 		items.add(item);
 	}
 	@Override

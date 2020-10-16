@@ -6,7 +6,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public interface IGUI {
-	void addItemStack(ItemStack item);
+	void addItemStack(SelectableItem item);
 
 	ItemStack[] getItemStacks();
 
