@@ -44,12 +44,11 @@ public abstract class GUI implements IGUI, InventoryHolder {
 	}
 	public void click(Player player, InventoryClickEvent e){
 		ItemStack item = e.getCurrentItem();
-		SelectableItem selItem = null;
-		if (item != null)
-			if (item instanceof SelectableItem){
+		SelectableItem selItem;
+		if (item != null){
 				selItem = items.stream().filter(o->o.isSimilar(item)).findFirst().orElse(null);
 				if (selItem != null)
 					selItem.run();
-			}
+		}
 	}
 }
