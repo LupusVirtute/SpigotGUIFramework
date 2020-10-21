@@ -90,7 +90,7 @@ public abstract class Paginator extends GUI {
 		if (item != null)
 			 selItem = items.stream().filter(o->o.isSimilar(item)).findFirst().orElse(null);
 		if (selItem != null)
-			selItem.run();
+			selItem.run(player);
 	}
 	public void nextPage(){
 		setPage(pageCounter+1);

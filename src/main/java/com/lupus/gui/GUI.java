@@ -48,7 +48,7 @@ public abstract class GUI implements IGUI, InventoryHolder {
 		if (item != null){
 				selItem = items.stream().filter(o->o.isSimilar(item)).findFirst().orElse(null);
 				if (selItem != null)
-					selItem.run();
+					selItem.run(player);
 		}
 	}
 }

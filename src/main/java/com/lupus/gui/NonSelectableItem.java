@@ -9,7 +9,7 @@ public class NonSelectableItem extends SelectableItem{
 	}
 
 	@Override
-	protected void execute() {
+	protected void execute(Object... args) {
 
 	}
 }

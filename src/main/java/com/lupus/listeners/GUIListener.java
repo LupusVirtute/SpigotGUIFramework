@@ -24,7 +24,6 @@ public class GUIListener implements Listener {
 		InventoryHolder holder = e.getInventory().getHolder();
 		if (holder != null)
 			if(holder instanceof GUI){
-				System.out.println("Called 1st");
 				e.setCancelled(true);
 				if (e.getWhoClicked() instanceof Player)
 					((GUI)holder).click(

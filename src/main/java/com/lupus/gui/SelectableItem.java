@@ -1,5 +1,6 @@
 package com.lupus.gui;
 
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class SelectableItem extends ItemStack {
@@ -13,9 +14,9 @@ public abstract class SelectableItem extends ItemStack {
 		this.runnable = runnable;
 	}
 	boolean runnable;
-	public void run(){
+	public void run(Object... args){
 		if (runnable)
-			execute();
+			execute(args);
 	}
-	protected abstract void execute();
+	protected abstract void execute(Object... args);
 }

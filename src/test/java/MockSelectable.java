@@ -7,7 +7,7 @@ public class MockSelectable extends SelectableItem {
 		super(true,item);
 	}
 	@Override
-	protected void execute() {
+	protected void execute(Object... args) {
 		testValue++;
 	}
 }
