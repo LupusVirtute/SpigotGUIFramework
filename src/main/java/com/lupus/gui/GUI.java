@@ -46,6 +46,7 @@ public abstract class GUI implements IGUI, InventoryHolder {
 	public String getInventoryName(){
 		return invName;
 	}
+	@Override
 	public void open(Player p){
 		p.closeInventory();
 		p.openInventory(inv);

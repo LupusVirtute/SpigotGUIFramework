@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class GUIManager {
 	private final HashMap<String,IGUI> createdGUIs = new HashMap<>();
@@ -22,11 +22,15 @@ public class GUIManager {
 	public IGUI getGUI(String name){
 		return createdGUIs.get(name);
 	}
+	public Set<String> getGUINames(){
+		return createdGUIs.keySet();
+	}
 	private void clear(){
 		createdGUIs.clear();
 	}
 	public void load(){
 		clear();
+		files = new ArrayList<>();
 		File dataFolder = MCGUIFramework.getInstance().getDataFolder();
 		dataFolder = new File(dataFolder+"/GUI/");
 		if (!dataFolder.exists()) {
@@ -40,9 +44,20 @@ public class GUIManager {
 				e.printStackTrace();
 			}
 		}
-		for (File file : Objects.requireNonNull(dataFolder.listFiles())) {
+		for (File file : fileSearch(dataFolder,".yml")) {
 			CreatableGUI gui = CreatableGUI.loadGUIFromFile(file);
 			MCGUIFramework.getManager().addGUI(gui);
 		}
+	}
+	private List<File> files = new ArrayList<>();
+	private List<File> fileSearch(File dir,String fileFormat){
+		if (dir.isDirectory()) {
+			for (File file : dir.listFiles()) {
+				fileSearch(file,fileFormat);
+			}
+		}
+		else if (dir.getName().endsWith(fileFormat))
+			files.add(dir);
+		return files;
 	}
 }

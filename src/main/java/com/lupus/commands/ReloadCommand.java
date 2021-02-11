@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ReloadCommand extends LupusCommand {
-	public ReloadCommand(String name, String usage, String description, List<String> aliases, List<String> permissionNodes, int argumentAmount) {
+	public ReloadCommand() {
 		super("guireload",
 				usage("/guireload"),
 				"reloads gui",
@@ -25,6 +25,6 @@ public class ReloadCommand extends LupusCommand {
 		long time = System.currentTimeMillis();
 		MCGUIFramework.getManager().load();
 		commandSender.sendMessage("Reloaded time: "+(System.currentTimeMillis()-time)+"ms");
-		commandSender.sendMessage("For details see console");
+
 	}
 }

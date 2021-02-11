@@ -18,7 +18,7 @@ public class CreatableGUI extends GUI {
 	private Map<Integer, CreatableItem> itemMap;
 	private String name;
 	private CreatableGUI(String name,String invName, int invSlots,Map<Integer,CreatableItem> map) {
-		super(ColorUtil.text2Color(invName), invSlots);
+		super(ColorUtil.text2Color(invName), invSlots*9);
 		itemMap = map;
 		this.name = name;
 		Inventory inv = getInventory();
@@ -48,7 +48,8 @@ public class CreatableGUI extends GUI {
 		String name = configuration.getString("name","");
 		String inventoryName = configuration.getString("inventory-name","");
 		int rowAmount = configuration.getInt("row-amount");
-
+		if (rowAmount > 6 || rowAmount < 1)
+			rowAmount = 6;
 		Map<Integer,CreatableItem> map = new HashMap<>();
 		ConfigurationSection configSection = configuration.getConfigurationSection("items");
 		if (configSection != null)

@@ -6,6 +6,8 @@ import com.lupus.gui.creatable.CreatableGUI;
 import com.lupus.listeners.GUIListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.java.annotation.dependency.Dependency;
+import org.bukkit.plugin.java.annotation.dependency.DependsOn;
 import org.bukkit.plugin.java.annotation.plugin.ApiVersion;
 import org.bukkit.plugin.java.annotation.plugin.Description;
 import org.bukkit.plugin.java.annotation.plugin.Plugin;
@@ -25,6 +27,9 @@ import java.util.Objects;
 @Author(value = "LupusVirtute")
 @Website(value="github.com/PuccyDestroyerxXx")
 @ApiVersion(value = ApiVersion.Target.v1_15)
+@DependsOn({
+		@Dependency("LupusCommandFramework")
+})
 
 public class MCGUIFramework extends JavaPlugin {
 	private static MCGUIFramework INSTANCE;

@@ -11,6 +11,7 @@ public interface IGUI {
 	ItemStack[] getItemStacks();
 
 	Inventory getInventory();
+	void open(Player player);
 	boolean isMatch(String invName);
 	String getName();
 	String getInventoryName();
