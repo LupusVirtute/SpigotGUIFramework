@@ -1,4 +1,4 @@
-package com.lupus.gui.creatable.actions;
+package com.lupus.gui.creatable;
 
 import java.util.ArrayList;
 import java.util.Arrays;

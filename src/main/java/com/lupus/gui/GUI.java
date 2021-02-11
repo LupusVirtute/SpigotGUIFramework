@@ -23,11 +23,19 @@ public abstract class GUI implements IGUI, InventoryHolder {
 		itemStacks = items.toArray(itemStacks);
 		return itemStacks;
 	}
+
+	@Override
+	public String getName() {
+		return "CodeBuild_"+getInventoryName();
+	}
+
 	@Override
 	public Inventory getInventory() {
 		return inv;
 	}
+	private final String invName;
 	public GUI(String invName,int invSlots){
+		this.invName = invName;
 		inv =  InventoryUtility.createCustomGUI(this,invSlots,invName);
 	}
 	@Override
@@ -36,19 +44,33 @@ public abstract class GUI implements IGUI, InventoryHolder {
 	}
 	@Override
 	public String getInventoryName(){
-		return inv.getName();
+		return invName;
 	}
 	public void open(Player p){
 		p.closeInventory();
 		p.openInventory(inv);
 	}
+	public void onClickedItemNull(Player player, InventoryClickEvent e){}
+
 	public void click(Player player, InventoryClickEvent e){
 		ItemStack item = e.getCurrentItem();
 		SelectableItem selItem;
 		if (item != null){
-				selItem = items.stream().filter(o->o.isSimilar(item)).findFirst().orElse(null);
+				selItem = items.
+						stream().
+						filter(o ->
+								{
+									if (o == null)
+										return false;
+									return o.getItem().hashCode() == item.hashCode();
+								}
+						).
+						findFirst().
+						orElse(null);
 				if (selItem != null)
 					selItem.run(player);
 		}
+		else
+			onClickedItemNull(player,e);
 	}
 }

@@ -17,17 +17,17 @@ public abstract class Paginator extends GUI {
 	public Paginator(String invName) {
 		super(invName, 54);
 
-		previous = new ItemStack(Material.STAINED_GLASS_PANE,1,(short)14);
+		previous = new ItemStack(Material.RED_STAINED_GLASS_PANE);
 		ItemMeta meta = previous.getItemMeta();
 		meta.setDisplayName(ChatColor.DARK_RED+"Poprzednia Strona");
 		previous.setItemMeta(meta);
 
-		next = new ItemStack(Material.STAINED_GLASS_PANE,1,(short)13);
+		next = new ItemStack(Material.GREEN_STAINED_GLASS_PANE);
 		meta = next.getItemMeta();
 		meta.setDisplayName(ChatColor.GREEN + "Następna Strona");
 		next.setItemMeta(meta);
 
-		exit = new ItemStack(Material.STAINED_GLASS_PANE,1,(short)11);
+		exit = new ItemStack(Material.BLUE_STAINED_GLASS_PANE);
 		meta = exit.getItemMeta();
 		meta.setDisplayName(ChatColor.DARK_BLUE + "Wyjdź");
 		exit.setItemMeta(meta);
@@ -68,8 +68,10 @@ public abstract class Paginator extends GUI {
 	@Override
 	public void click(Player player, InventoryClickEvent e) {
 		ItemStack clickedItem = e.getCurrentItem();
-		if (clickedItem == null)
+		if (clickedItem == null) {
+			onClickedItemNull(player, e);
 			return;
+		}
 		if (clickedItem.isSimilar(previous)){
 			if (pageCounter >= 0)
 				previousPage();
@@ -88,7 +90,7 @@ public abstract class Paginator extends GUI {
 		ItemStack item = e.getCurrentItem();
 		SelectableItem selItem = null;
 		if (item != null)
-			 selItem = items.stream().filter(o->o.isSimilar(item)).findFirst().orElse(null);
+			 selItem = items.stream().filter(o->o.getItem().isSimilar(item)).findFirst().orElse(null);
 		if (selItem != null)
 			selItem.run(player);
 	}
@@ -102,6 +104,8 @@ public abstract class Paginator extends GUI {
 			setPage(0);
 	}
 	public void setPage(int page){
+		if (page*35 > items.size())
+			return;
 		pageCounter = page;
 		for (int i=0;i<=35;i++){
 			inv.setItem(i,new ItemStack(Material.AIR));
@@ -110,7 +114,7 @@ public abstract class Paginator extends GUI {
 			if (items.size() <= i) {
 				break;
 			}
-			inv.setItem(i-j+36,items.get(i));
+			inv.setItem(i-j+36,items.get(i).getItem());
 		}
 	}
 }

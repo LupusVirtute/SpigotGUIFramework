@@ -12,6 +12,7 @@ public interface IGUI {
 
 	Inventory getInventory();
 	boolean isMatch(String invName);
+	String getName();
 	String getInventoryName();
 	void click(Player player, InventoryClickEvent e);
 	void onClose(Player player);

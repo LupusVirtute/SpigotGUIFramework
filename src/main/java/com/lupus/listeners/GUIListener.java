@@ -25,11 +25,12 @@ public class GUIListener implements Listener {
 		if (holder != null)
 			if(holder instanceof GUI){
 				e.setCancelled(true);
-				if (e.getWhoClicked() instanceof Player)
-					((GUI)holder).click(
-							(Player) e.getWhoClicked(),
-							e
-					);
+				if (e.getWhoClicked()!=null)
+					if (e.getWhoClicked() instanceof Player)
+						((GUI)holder).click(
+								(Player) e.getWhoClicked(),
+								e
+						);
 			}
 	}
 }

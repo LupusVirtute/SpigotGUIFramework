@@ -1,5 +1,6 @@
-package com.lupus.gui;
+package com.lupus.gui.selectables;
 
+import com.lupus.gui.PlayerSelectableItem;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

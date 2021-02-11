@@ -1,3 +1,4 @@
+/*
 import com.lupus.gui.SelectableItem;
 import org.bukkit.inventory.ItemStack;
 
@@ -9,6 +10,6 @@ public class MockSelectable extends SelectableItem {
 	@Override
 	protected void execute(Object... args) {
 		testValue++;
-		Object[] argArray = getArgs(args,1);
 	}
 }
+*/

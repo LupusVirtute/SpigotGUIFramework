@@ -1,3 +1,4 @@
+/*
 import com.lupus.gui.Paginator;
 import org.bukkit.entity.Player;
 
@@ -11,3 +12,4 @@ public class MockPaginator extends Paginator {
 
 	}
 }
+*/

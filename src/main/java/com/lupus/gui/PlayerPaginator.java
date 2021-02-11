@@ -56,7 +56,7 @@ public abstract class PlayerPaginator extends Paginator {
 				ItemStackUtil.setItemTitleAndLore(
 					Skulls.getSkull(players[i]),
 					"&9"+Bukkit.getOfflinePlayer(players[i]).getName(),
-					(String[])specialLore.toArray()
+					specialLore.toArray(new String[0])
 				)
 			);
 		}
