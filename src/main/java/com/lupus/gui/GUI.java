@@ -19,8 +19,11 @@ public abstract class GUI implements IGUI, InventoryHolder {
 	}
 	@Override
 	public ItemStack[] getItemStacks(){
-		ItemStack[] itemStacks = new ItemStack[1];
-		itemStacks = items.toArray(itemStacks);
+		ItemStack[] itemStacks = new ItemStack[items.size()];
+		for (int i = 0; i < items.size(); i++) {
+			SelectableItem item = items.get(i);
+			itemStacks[i] = item.getItem();
+		}
 		return itemStacks;
 	}
 

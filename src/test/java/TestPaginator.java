@@ -1,4 +1,3 @@
-/*
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import com.lupus.gui.SelectableItem;
@@ -23,12 +22,8 @@ public class TestPaginator {
 	public static ServerMock mock;
 	static Material[] materials = Material.values();
 	static Material[] illegalMaterials = {
-		Material.BANNER,
-		Material.STANDING_BANNER,
-		Material.WALL_BANNER,
 		Material.BOOK,
 		Material.ENCHANTED_BOOK,
-		Material.FIREWORK,
 		Material.KNOWLEDGE_BOOK,
 		Material.LEATHER_BOOTS,
 		Material.LEATHER_CHESTPLATE,
@@ -38,13 +33,9 @@ public class TestPaginator {
 		Material.POTION,
 		Material.LINGERING_POTION,
 		Material.SPLASH_POTION,
-		Material.SKULL,
-		Material.SKULL_ITEM,
 		Material.EGG,
 		Material.DRAGON_EGG,
 		Material.KNOWLEDGE_BOOK,
-		Material.MONSTER_EGG,
-		Material.MONSTER_EGGS,
 	};
 	@BeforeAll
 	public static void beforeAll(){
@@ -78,57 +69,4 @@ public class TestPaginator {
 		}
 		return mock;
 	}
-	@Test
-	void TestIfItemsExist_ForwardScanTheyAllExist_Success(){
-		MockPaginator mock = fillMockPaginator();
-		int i=0,j=0;
-		ItemStack[] itemStacks = mock.getItemStacks();
-		mock.setPage(0);
-		while (i<itemStacks.length) {
-			ItemStack itemToCompare = itemStacks[i];
-			ItemStack item = mock.getInventory().getItem(j);
-			assertEquals(itemToCompare, item);
-			int testValue = MockSelectable.testValue;
-			if (item instanceof SelectableItem){
-				((SelectableItem)item).run();
-				assertEquals(testValue+1,MockSelectable.testValue);
-			}
-			else
-				fail("Item Supposed to be selectable item but wasn't");
-			if (j >= 35){
-				j=0;
-				mock.nextPage();
-			}else
-				j++;
-			i++;
-		}
-	}
-	@Test
-	void TestIfItemsExist_BackwardsScanTheyAllExist_Success(){
-		MockPaginator mock = fillMockPaginator();
-		ItemStack[] itemStacks = mock.getItemStacks();
-		int i=itemStacks.length-1,j;
-		int maxPage = (int)Math.ceil(itemStacks.length/36d);
-		j = i%36;
-		mock.setPage(maxPage-1);
-		while (i>0) {
-			ItemStack itemToCompare = itemStacks[i];
-			ItemStack item = mock.getInventory().getItem(j);
-			assertEquals(itemToCompare, item);
-			int testValue = MockSelectable.testValue;
-			if (item instanceof SelectableItem){
-				((SelectableItem)item).run();
-				assertEquals(testValue+1,MockSelectable.testValue);
-			}
-			else
-				fail("Item Supposed to be selectable item but wasn't");
-			if (j <= 0){
-				j=35;
-				mock.previousPage();
-			}else
-				j--;
-			i--;
-		}
-	}
 }
-*/

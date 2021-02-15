@@ -1,4 +1,3 @@
-/*
 import com.lupus.gui.SelectableItem;
 import org.bukkit.inventory.ItemStack;
 
@@ -12,4 +11,3 @@ public class MockSelectable extends SelectableItem {
 		testValue++;
 	}
 }
-*/
