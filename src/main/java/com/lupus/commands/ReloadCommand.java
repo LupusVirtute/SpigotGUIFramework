@@ -2,12 +2,11 @@ package com.lupus.commands;
 
 import com.lupus.MCGUIFramework;
 import com.lupus.command.framework.commands.LupusCommand;
-import com.lupus.gui.GUIManager;
+import com.lupus.command.framework.commands.arguments.ArgumentList;
 import org.bukkit.command.CommandSender;
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
-import java.util.List;
 
 public class ReloadCommand extends LupusCommand {
 	public ReloadCommand() {
@@ -20,7 +19,7 @@ public class ReloadCommand extends LupusCommand {
 	}
 
 	@Override
-	public void run(CommandSender commandSender, String[] strings) {
+	public void run(CommandSender commandSender, ArgumentList args) {
 		commandSender.sendMessage("Reloading...");
 		long time = System.currentTimeMillis();
 		MCGUIFramework.getManager().load();

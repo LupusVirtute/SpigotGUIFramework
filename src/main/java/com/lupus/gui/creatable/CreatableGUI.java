@@ -1,7 +1,7 @@
 package com.lupus.gui.creatable;
 
 import com.lupus.gui.GUI;
-import com.lupus.utils.ColorUtil;
+import com.lupus.gui.utils.TextUtility;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -18,7 +18,7 @@ public class CreatableGUI extends GUI {
 	private Map<Integer, CreatableItem> itemMap;
 	private String name;
 	private CreatableGUI(String name,String invName, int invSlots,Map<Integer,CreatableItem> map) {
-		super(ColorUtil.text2Color(invName), invSlots*9);
+		super(TextUtility.color(invName), invSlots*9);
 		itemMap = map;
 		this.name = name;
 		Inventory inv = getInventory();

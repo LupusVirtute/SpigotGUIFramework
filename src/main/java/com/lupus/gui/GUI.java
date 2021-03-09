@@ -1,6 +1,6 @@
 package com.lupus.gui;
 
-import com.lupus.utils.InventoryUtility;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -39,7 +39,7 @@ public abstract class GUI implements IGUI, InventoryHolder {
 	private final String invName;
 	public GUI(String invName,int invSlots){
 		this.invName = invName;
-		inv =  InventoryUtility.createCustomGUI(this,invSlots,invName);
+		inv =  createCustomGUI(this,invSlots,invName);
 	}
 	@Override
 	public boolean isMatch(String invName){
@@ -76,5 +76,16 @@ public abstract class GUI implements IGUI, InventoryHolder {
 		}
 		else
 			onClickedItemNull(player,e);
+	}
+	private static Inventory createCustomGUI(InventoryHolder holder, int slots, String name){
+		if(slots <= 0 || slots > 54 || name == null){
+			return null;
+		}
+		slots /= 9;
+		if (slots < 1) {
+			slots = 1;
+		}
+		slots *= 9;
+		return Bukkit.createInventory(holder, slots, name);
 	}
 }

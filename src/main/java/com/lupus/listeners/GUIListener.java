@@ -11,9 +11,6 @@ import org.bukkit.inventory.InventoryHolder;
 public class GUIListener implements Listener {
 	@EventHandler
 	public void onInventoryCancelEvent(InventoryCloseEvent e){
-		if (e.getPlayer() == null) {
-			return;
-		}
 		InventoryHolder holder = e.getInventory().getHolder();
 		if (holder != null)
 			if (holder instanceof GUI)
@@ -25,12 +22,11 @@ public class GUIListener implements Listener {
 		if (holder != null)
 			if(holder instanceof GUI){
 				e.setCancelled(true);
-				if (e.getWhoClicked()!=null)
-					if (e.getWhoClicked() instanceof Player)
-						((GUI)holder).click(
-								(Player) e.getWhoClicked(),
-								e
-						);
+				if (e.getWhoClicked() instanceof Player)
+					((GUI)holder).click(
+							(Player) e.getWhoClicked(),
+							e
+					);
 			}
 	}
 }

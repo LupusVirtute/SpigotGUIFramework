@@ -2,6 +2,7 @@ package com.lupus.commands;
 
 import com.lupus.MCGUIFramework;
 import com.lupus.command.framework.commands.PlayerCommand;
+import com.lupus.command.framework.commands.arguments.ArgumentList;
 import com.lupus.gui.IGUI;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -20,8 +21,8 @@ public class TestSeeCommand extends PlayerCommand {
 	}
 
 	@Override
-	protected void run(Player player, String[] strings) {
-		IGUI gui = MCGUIFramework.getManager().getGUI(strings[0]);
+	protected void run(Player player, ArgumentList args) throws Exception {
+		IGUI gui = MCGUIFramework.getManager().getGUI(args.getArg(String.class,0));
 		if (gui == null) {
 			player.sendMessage("GUI DOESN'T EXIST");
 			return;

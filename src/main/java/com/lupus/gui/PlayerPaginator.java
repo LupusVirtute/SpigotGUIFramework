@@ -1,8 +1,8 @@
 package com.lupus.gui;
 
 
-import com.lupus.utils.ItemStackUtil;
-import com.lupus.utils.Skulls;
+import com.lupus.gui.utils.ItemUtility;
+import com.lupus.gui.utils.SkullUtility;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -53,10 +53,10 @@ public abstract class PlayerPaginator extends Paginator {
 		for (int i=page-35,j=0;j<35 && i < players.length;i++,j++){
 			inv.setItem(
 				j,
-				ItemStackUtil.setItemTitleAndLore(
-					Skulls.getSkull(players[i]),
+				ItemUtility.setItemTitleAndLore(
+					SkullUtility.getSkullFromPlayer(players[i]),
 					"&9"+Bukkit.getOfflinePlayer(players[i]).getName(),
-					specialLore.toArray(new String[0])
+					specialLore
 				)
 			);
 		}

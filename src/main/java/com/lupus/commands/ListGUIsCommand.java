@@ -2,6 +2,7 @@ package com.lupus.commands;
 
 import com.lupus.MCGUIFramework;
 import com.lupus.command.framework.commands.LupusCommand;
+import com.lupus.command.framework.commands.arguments.ArgumentList;
 import org.bukkit.command.CommandSender;
 
 import java.util.Arrays;
@@ -16,11 +17,12 @@ public class ListGUIsCommand extends LupusCommand {
 				1);	}
 
 	@Override
-	public void run(CommandSender commandSender, String[] strings) {
+	public void run(CommandSender commandSender, ArgumentList args) {
 		commandSender.sendMessage("--- GUI LIST ---");
 		for (String guiName : MCGUIFramework.getManager().getGUINames()) {
 			commandSender.sendMessage("- "+guiName);
 		}
 		commandSender.sendMessage("--- GUI END  ---");
 	}
+
 }

@@ -1,8 +1,8 @@
 package com.lupus.gui.creatable;
 
 import com.lupus.gui.SelectableItem;
-import com.lupus.utils.ColorUtil;
-import com.lupus.utils.Skulls;
+import com.lupus.gui.utils.SkullUtility;
+import com.lupus.gui.utils.TextUtility;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -43,7 +43,7 @@ public class CreatableItem extends SelectableItem {
 		String materialString = section.getString("material","STONE");
 		Material mat = Material.valueOf(materialString);
 
-		String name = ColorUtil.text2Color(section.getString("name","ERROR"));
+		String name = TextUtility.color(section.getString("name","ERROR"));
 
 		List<String> lore = section.getStringList("lore");
 
@@ -54,7 +54,7 @@ public class CreatableItem extends SelectableItem {
 		if (lore.size() > 0) {
 			List<String> stringList = new ArrayList<>();
 			for (String s : lore) {
-				stringList.add(ColorUtil.text2Color(s));
+				stringList.add(TextUtility.color(s));
 			}
 			lore = stringList;
 		}
@@ -67,7 +67,7 @@ public class CreatableItem extends SelectableItem {
 
 		item.setItemMeta(meta);
 		if (mat == Material.PLAYER_HEAD){
-			item = Skulls.setSkullTexture(item,skullTexture);
+			item = SkullUtility.getFromTextureB64(item,skullTexture);
 		}
 		setItem(item);
 
