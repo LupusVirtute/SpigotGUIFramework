@@ -30,14 +30,14 @@ public class SlotUtility {
 	 * @return integer list
 	 */
 	private static Integer[] getSlotsBetween(Vector2D<Integer> from,Vector2D<Integer> to){
-		if (!isGreater(from, to)){
+		if (!isGreater(to, from)){
 			Vector2D<Integer> swap = to;
 			to = from;
 			from = swap;
 		}
 		List<Integer> slotList = new ArrayList<>();
-		for (int y=from.getY();y<to.getY();y++){
-			for (int x=from.getX();x<to.getX();x++){
+		for (int y=from.getY();y<=to.getY();y++){
+			for (int x=from.getX();x<=to.getX();x++){
 				slotList.add(getSlotFromXY(x,y));
 			}
 		}

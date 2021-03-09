@@ -5,15 +5,11 @@ import com.lupus.gui.utils.SlotUtility;
 import com.lupus.gui.utils.TextUtility;
 import com.lupus.gui.utils.coordinates.Vector2D;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.ComponentBuilder;
-import net.kyori.adventure.text.TextComponent;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.w3c.dom.Text;
 
 public abstract class Paginator extends GUI {
 	static ItemStack previous;
@@ -21,7 +17,7 @@ public abstract class Paginator extends GUI {
 	static ItemStack exit;
 	static {
 
-		var component = Component.text(TextUtility.color("&4Poprzednia Strona"));
+		var component = TextUtility.getColoredTextComponent("&4Poprzednia Strona");
 
 		previous = new ItemStack(Material.RED_STAINED_GLASS_PANE);
 		ItemMeta meta = previous.getItemMeta();
@@ -31,13 +27,14 @@ public abstract class Paginator extends GUI {
 		next = new ItemStack(Material.GREEN_STAINED_GLASS_PANE);
 		meta = next.getItemMeta();
 
-		component = Component.text(TextUtility.color("&aNastępna strona"));
+		component = TextUtility.getColoredTextComponent("&aNastępna strona");
 		meta.displayName(component);
 		next.setItemMeta(meta);
 
 		exit = new ItemStack(Material.BLUE_STAINED_GLASS_PANE);
 		meta = exit.getItemMeta();
-		component = Component.text("&1Wyjdź");
+		component = TextUtility.getColoredTextComponent("&1Wyjdź");
+		meta.displayName(component);
 		exit.setItemMeta(meta);
 	}
 	protected int pageCounter = 0;

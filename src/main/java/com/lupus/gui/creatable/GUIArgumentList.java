@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-public class ArgumentList {
-	public ArgumentList(Object... arguments){
+public class GUIArgumentList {
+	public GUIArgumentList(Object... arguments){
 		argumentList.addAll(Arrays.asList(arguments));
 	}
 	private static final IllegalArgumentException illegalIDX = new IllegalArgumentException("Illegal Index value");

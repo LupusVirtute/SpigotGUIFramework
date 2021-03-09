@@ -76,10 +76,10 @@ public class CreatableItem extends SelectableItem {
 
 	@Override
 	protected void execute(Object... args){
-		ArgumentList argumentList = new ArgumentList(args);
+		GUIArgumentList GUIArgumentList = new GUIArgumentList(args);
 		Player caller = null;
 		try {
-			caller = argumentList.getFirstAnyArgType(Player.class);
+			caller = GUIArgumentList.getFirstAnyArgType(Player.class);
 		} catch (Exception ignored) {}
 		if (caller == null)
 			return;

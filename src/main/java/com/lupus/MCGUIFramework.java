@@ -3,6 +3,7 @@ package com.lupus;
 import com.lupus.gui.GUI;
 import com.lupus.gui.GUIManager;
 import com.lupus.gui.creatable.CreatableGUI;
+import com.lupus.gui.utils.SkullUtility;
 import com.lupus.listeners.GUIListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -48,6 +49,10 @@ public class MCGUIFramework extends JavaPlugin {
 	public void onEnable() {
 		INSTANCE = this;
 		infoConsole("Initializing MCGUIFramework");
+		this.saveDefaultConfig();
+		infoConsole("Loading Skull numbers");
+		SkullUtility.load();
+		infoConsole("Skulls loaded");
 		infoConsole("Binding GUI listener to plugin");
 		getServer().getPluginManager().registerEvents(new GUIListener(),this);
 		infoConsole("Bind completed");

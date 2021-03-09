@@ -1,5 +1,7 @@
 package com.lupus.gui.utils;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 
@@ -15,5 +17,8 @@ public class TextUtility {
 			text.replace("#"+group,Color.fromRGB(Integer.parseInt(group,16)).toString());
 		});
 		return ChatColor.translateAlternateColorCodes('&',text);
+	}
+	public static TextComponent getColoredTextComponent(String text){
+		return Component.text(color(text));
 	}
 }
