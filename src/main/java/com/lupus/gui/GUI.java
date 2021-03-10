@@ -1,5 +1,6 @@
 package com.lupus.gui;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -86,6 +87,11 @@ public abstract class GUI implements IGUI, InventoryHolder {
 			slots = 1;
 		}
 		slots *= 9;
-		return Bukkit.createInventory(holder, slots, name);
+		var textComponent = Component.text(name);
+		return Bukkit.createInventory(holder, slots, textComponent);
+	}
+	@Override
+	public void onClose(Player p){
+
 	}
 }

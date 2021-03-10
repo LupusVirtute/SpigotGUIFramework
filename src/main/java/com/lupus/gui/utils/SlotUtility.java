@@ -22,6 +22,21 @@ public class SlotUtility {
 			inventoryToFill.setItem(integer,item);
 		}
 	}
+	/**
+	 * Fills square in inventory
+	 * @param inventoryToFill inventory that is gonna be filled
+	 * @param top top-left of the square
+	 * @param bottom bottom-right of the square
+	 * @param items items that should be put in the fill remaining items get discarded
+	 */
+	public static void fillSquare(Inventory inventoryToFill, Vector2D<Integer> top, Vector2D<Integer> bottom, ItemStack... items) {
+		Integer[] slotsToFill = getSlotsBetween(top, bottom);
+		int idx = 0;
+		for (Integer integer : slotsToFill) {
+			inventoryToFill.setItem(integer,items[idx]);
+			idx++;
+		}
+	}
 
 	/**
 	 * Get slots between 2 vectors

@@ -2,6 +2,7 @@ package com.lupus.gui.utils;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
+import com.lupus.MCGUIFramework;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -21,7 +22,7 @@ public class SkullUtility {
 	static {
 	}
 	public static void load(){
-		FileConfiguration config = ConfigUtility.getConfig("config.yml");
+		FileConfiguration config = ConfigUtility.getConfig(MCGUIFramework.getInstance(),"config.yml");
 		ConfigurationSection section = config.getConfigurationSection("numbers");
 		if (section != null)
 			for (String numbers : section.getKeys(false))
