@@ -8,7 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SlotUtility {
-
+	public static void fillBorder(Inventory inventoryToFill,Vector2D<Integer> top,Vector2D<Integer> bottom, ItemStack item){
+		if (!isGreater(top, bottom)) {
+			Vector2D<Integer> swap = top;
+			top = bottom;
+			bottom = swap;
+		}
+		Vector2D<Integer> topright = new Vector2D<>(bottom.getX(),top.getY());
+		Vector2D<Integer> bottomleft = new Vector2D<>(top.getX(),bottom.getY());
+		fillSquare(inventoryToFill,top,topright,item);
+		fillSquare(inventoryToFill,topright,bottom,item);
+		fillSquare(inventoryToFill,bottomleft,bottom,item);
+		fillSquare(inventoryToFill,top,bottomleft,item);
+	}
 	/**
 	 * Fills square in inventory
 	 *
