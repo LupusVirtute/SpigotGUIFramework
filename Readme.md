@@ -1,2 +1,3 @@
 # MCGUIFramework
-This is framework i will be using for displaying GUI's to Players
+[![](https://jitpack.io/v/PuccyDestroyerxXx/SpigotGUIFramework.svg)](https://jitpack.io/#PuccyDestroyerxXx/SpigotGUIFramework)  
+Framework for creating minecraft GUI's
