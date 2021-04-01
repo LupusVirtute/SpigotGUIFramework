@@ -20,9 +20,10 @@ import java.util.UUID;
 public class SkullUtility {
 	private static final List<ItemStack> numberSkulls = new ArrayList<>();
 
-	static {
-	}
 
+	/**
+	 * Loads default number skulls
+	 */
 	public static void load() {
 		FileConfiguration config = ConfigUtility.getConfig(MCGUIFramework.getInstance(), "config.yml");
 		ConfigurationSection section = config.getConfigurationSection("numbers");
@@ -35,6 +36,11 @@ public class SkullUtility {
 				);
 	}
 
+	/**
+	 * Get skull from player UUID
+	 * @param player Player UUID to get skull from
+	 * @return player skull
+	 */
 	public static ItemStack getSkullFromPlayer(UUID player) {
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player);
 
@@ -45,6 +51,11 @@ public class SkullUtility {
 		return itemStack;
 	}
 
+	/**
+	 * Get skull with texture taken from B64 string
+	 * @param textureValue skull texture in b64 string
+	 * @return itemstack with skull texture
+	 */
 	public static ItemStack getFromTextureB64(String textureValue) {
 		return getFromTextureB64(new ItemStack(Material.PLAYER_HEAD), textureValue);
 	}
@@ -58,6 +69,12 @@ public class SkullUtility {
 		return null;
 	}
 
+	/**
+	 * Get skull texture in b64 applies it to the given <b>itemStack</b>
+	 * @param itemStack itemStack to apply texture to
+	 * @param textureValue texture in b64
+	 * @return skull applied to itemStack
+	 */
 	public static ItemStack getFromTextureB64(ItemStack itemStack, String textureValue) {
 		if (itemStack.getType() != Material.PLAYER_HEAD)
 			return itemStack;
@@ -106,6 +123,11 @@ public class SkullUtility {
 		}
 	}
 
+	/**
+	 * Checks if this item is number skull
+	 * @param itemStack itemStack to check
+	 * @return whether skull is number skull
+	 */
 	public static boolean isThisItemNumberSkull(ItemStack itemStack) {
 		return numberSkulls.contains(itemStack);
 	}

@@ -1,4 +1,4 @@
-package com.lupus.gui.utils.nbt;
+package com.lupus.gui.utils;
 
 import org.bukkit.Location;
 import org.bukkit.World;
