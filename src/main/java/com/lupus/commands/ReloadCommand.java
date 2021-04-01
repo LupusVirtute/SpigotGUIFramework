@@ -5,7 +5,6 @@ import com.lupus.command.framework.commands.LupusCommand;
 import com.lupus.command.framework.commands.arguments.ArgumentList;
 import org.bukkit.command.CommandSender;
 
-
 import java.util.Arrays;
 
 public class ReloadCommand extends LupusCommand {
@@ -13,7 +12,7 @@ public class ReloadCommand extends LupusCommand {
 		super("guireload",
 				usage("/guireload"),
 				"reloads gui",
-				Arrays.asList("mcguireload","mcgr"),
+				Arrays.asList("mcguireload", "mcgr"),
 				Arrays.asList("MCGUIFramework.reload"),
 				0);
 	}
@@ -23,7 +22,7 @@ public class ReloadCommand extends LupusCommand {
 		commandSender.sendMessage("Reloading...");
 		long time = System.currentTimeMillis();
 		MCGUIFramework.getManager().load();
-		commandSender.sendMessage("Reloaded time: "+(System.currentTimeMillis()-time)+"ms");
+		commandSender.sendMessage("Reloaded time: " + (System.currentTimeMillis() - time) + "ms");
 
 	}
 }

@@ -2,7 +2,6 @@ package com.lupus.gui.creator;
 
 import com.lupus.gui.GUI;
 import com.lupus.gui.utils.FileUtility;
-import com.lupus.gui.utils.SkullUtility;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 

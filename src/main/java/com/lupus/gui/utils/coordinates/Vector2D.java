@@ -1,8 +1,9 @@
 package com.lupus.gui.utils.coordinates;
 
 public class Vector2D<E> {
-	private E x,y;
-	public Vector2D(E x, E y){
+	private E x, y;
+
+	public Vector2D(E x, E y) {
 		this.x = x;
 		this.y = y;
 	}

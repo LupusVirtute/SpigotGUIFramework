@@ -14,43 +14,48 @@ import java.util.List;
 
 public class CreatableItem extends SelectableItem {
 	private String actionName;
-	private CreatableItem(String actionName){
-		super(true,null);
+
+	private CreatableItem(String actionName) {
+		super(true, null);
 		if (actionName.equals(""))
 			return;
 		this.actionName = actionName;
 
 
 	}
-	public static CreatableItem start(String action){
+
+	public static CreatableItem start(String action) {
 		if (action.isEmpty()) {
 			action = "";
 		}
 		return new CreatableItem(action);
 	}
-	public String[] getArgs(String[] args, int from){
-		String[] argsNew = new String[args.length-from];
+
+	public String[] getArgs(String[] args, int from) {
+		String[] argsNew = new String[args.length - from];
 		if (args.length - from >= 0) System.arraycopy(args, from, argsNew, 0, args.length - from);
 		return argsNew;
 	}
-	public String combineArgs(String[] args){
+
+	public String combineArgs(String[] args) {
 		StringBuilder bestArg = new StringBuilder();
 		for (String arg : args)
 			bestArg.append(arg).append("|");
 		return bestArg.toString();
 	}
-	public CreatableItem setItem(ConfigurationSection section){
-		String materialString = section.getString("material","STONE");
+
+	public CreatableItem setItem(ConfigurationSection section) {
+		String materialString = section.getString("material", "STONE");
 		Material mat = Material.valueOf(materialString);
 
-		String name = TextUtility.color(section.getString("name","ERROR"));
+		String name = TextUtility.color(section.getString("name", "ERROR"));
 
 		List<String> lore = section.getStringList("lore");
 
 		if (lore == null)
 			lore = new ArrayList<>();
 
-		String skullTexture = section.getString("skull-texture","");
+		String skullTexture = section.getString("skull-texture", "");
 		if (lore.size() > 0) {
 			List<String> stringList = new ArrayList<>();
 			for (String s : lore) {
@@ -66,8 +71,8 @@ public class CreatableItem extends SelectableItem {
 
 
 		item.setItemMeta(meta);
-		if (mat == Material.PLAYER_HEAD){
-			item = SkullUtility.getFromTextureB64(item,skullTexture);
+		if (mat == Material.PLAYER_HEAD) {
+			item = SkullUtility.getFromTextureB64(item, skullTexture);
 		}
 		setItem(item);
 
@@ -75,12 +80,13 @@ public class CreatableItem extends SelectableItem {
 	}
 
 	@Override
-	protected void execute(Object... args){
+	protected void execute(Object... args) {
 		GUIArgumentList GUIArgumentList = new GUIArgumentList(args);
 		Player caller = null;
 		try {
 			caller = GUIArgumentList.getFirstAnyArgType(Player.class);
-		} catch (Exception ignored) {}
+		} catch (Exception ignored) {
+		}
 		if (caller == null)
 			return;
 		caller.performCommand(actionName);

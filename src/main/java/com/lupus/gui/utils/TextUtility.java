@@ -16,11 +16,12 @@ public class TextUtility {
 		Matcher m = pattern.matcher(text);
 		for (MatchResult matchResult : m.results().collect(Collectors.toList())) {
 			String group = matchResult.group(2);
-			text = text.replace("#"+group,Color.fromRGB(Integer.parseInt(group,16)).toString());
+			text = text.replace("#" + group, Color.fromRGB(Integer.parseInt(group, 16)).toString());
 		}
-		return ChatColor.translateAlternateColorCodes('&',text);
+		return ChatColor.translateAlternateColorCodes('&', text);
 	}
-	public static TextComponent getColoredTextComponent(String text){
+
+	public static TextComponent getColoredTextComponent(String text) {
 		return Component.text(color(text));
 	}
 }

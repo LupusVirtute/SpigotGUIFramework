@@ -9,41 +9,44 @@ import org.bukkit.persistence.PersistentDataType;
 
 @SuppressWarnings("unchecked")
 public enum NBTDataType {
-	INTEGER(Integer.class,PersistentDataType.INTEGER),
-	LONG(long.class,PersistentDataType.LONG),
-	SHORT(short.class,PersistentDataType.SHORT),
-	DOUBLE(double.class,PersistentDataType.DOUBLE),
-	FLOAT(float.class,PersistentDataType.FLOAT),
-	STRING(String.class,PersistentDataType.STRING),
-	BYTE_ARRAY(byte[].class,PersistentDataType.BYTE_ARRAY),
-	INTEGER_ARRAY(int[].class,PersistentDataType.INTEGER_ARRAY),
-	LONG_ARRAY(long[].class,PersistentDataType.LONG_ARRAY),
+	INTEGER(Integer.class, PersistentDataType.INTEGER),
+	LONG(long.class, PersistentDataType.LONG),
+	SHORT(short.class, PersistentDataType.SHORT),
+	DOUBLE(double.class, PersistentDataType.DOUBLE),
+	FLOAT(float.class, PersistentDataType.FLOAT),
+	STRING(String.class, PersistentDataType.STRING),
+	BYTE_ARRAY(byte[].class, PersistentDataType.BYTE_ARRAY),
+	INTEGER_ARRAY(int[].class, PersistentDataType.INTEGER_ARRAY),
+	LONG_ARRAY(long[].class, PersistentDataType.LONG_ARRAY),
 	;
 
-	<E> NBTDataType(Class<? extends E> primitive, PersistentDataType<E,E> conversionFunction){
+	<E> NBTDataType(Class<? extends E> primitive, PersistentDataType<E, E> conversionFunction) {
 		this.primitive = primitive;
 		dataType = conversionFunction;
 	}
 
-	private <E> void setNBTTag(ItemStack itemStack, PersistentDataType<E,E> dataType,String key,E value) {
+	private <E> void setNBTTag(ItemStack itemStack, PersistentDataType<E, E> dataType, String key, E value) {
 		ItemMeta meta = itemStack.getItemMeta();
 		var pdc = meta.getPersistentDataContainer();
-		pdc.set(getNamespacedKey(key),dataType,value);
+		pdc.set(getNamespacedKey(key), dataType, value);
 		itemStack.setItemMeta(meta);
 	}
-	private <E> E nbtFromItemStack(ItemStack itemStack,String key,Class<? extends E> clazz){
+
+	private <E> E nbtFromItemStack(ItemStack itemStack, String key, Class<? extends E> clazz) {
 		ItemMeta meta = itemStack.getItemMeta();
 		var pdc = meta.getPersistentDataContainer();
-		var data = pdc.get(getNamespacedKey(key),dataType);
-		if (clazz.isInstance(data)){
-			return (E)data;
+		var data = pdc.get(getNamespacedKey(key), dataType);
+		if (clazz.isInstance(data)) {
+			return (E) data;
 		}
 		return null;
 	}
-	private static NamespacedKey getNamespacedKey(String key){
+
+	private static NamespacedKey getNamespacedKey(String key) {
 		return new NamespacedKey(MCGUIFramework.getInstance(), key);
 	}
-	public boolean complies(Class<?> clazz){
+
+	public boolean complies(Class<?> clazz) {
 		return primitive.isAssignableFrom(clazz);
 	}
 
@@ -51,7 +54,7 @@ public enum NBTDataType {
 	private final PersistentDataType dataType;
 
 
-	public static <E> void setNBTTag(ItemStack itemStack,String key,E value){
+	public static <E> void setNBTTag(ItemStack itemStack, String key, E value) {
 
 		Class<? extends E> clazz = (Class<? extends E>) value.getClass();
 		for (NBTDataType nbtDataType : values()) {
@@ -61,7 +64,8 @@ public enum NBTDataType {
 		}
 
 	}
-	public static <E> E getNBTTag(ItemStack itemStack, Class<? extends E> clazz,String key){
+
+	public static <E> E getNBTTag(ItemStack itemStack, Class<? extends E> clazz, String key) {
 
 		for (NBTDataType nbtDataType : values()) {
 			if (nbtDataType.complies(clazz)) {
@@ -71,7 +75,8 @@ public enum NBTDataType {
 
 		return null;
 	}
-	public static boolean hasTag(ItemStack itemStack, String key){
+
+	public static boolean hasTag(ItemStack itemStack, String key) {
 		ItemMeta meta = itemStack.getItemMeta();
 
 		var pdc = meta.getPersistentDataContainer();

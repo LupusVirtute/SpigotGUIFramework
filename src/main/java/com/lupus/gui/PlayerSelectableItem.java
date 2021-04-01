@@ -13,7 +13,8 @@ public abstract class PlayerSelectableItem extends SelectableItem {
 		if (args.length < 1) return;
 		if (!(args[0] instanceof Player)) return;
 		Player player = (Player) args[0];
-		execute(player,getArgs(args,1));
+		execute(player, getArgs(args, 1));
 	}
+
 	protected abstract void execute(Player player, Object... args);
 }

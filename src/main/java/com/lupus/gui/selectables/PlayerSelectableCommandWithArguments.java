@@ -10,7 +10,8 @@ import java.util.List;
 
 public class PlayerSelectableCommandWithArguments extends PlayerSelectableCommand {
 	Object[] args;
-	public PlayerSelectableCommandWithArguments(ItemStack item, Command command,Object... args) {
+
+	public PlayerSelectableCommandWithArguments(ItemStack item, Command command, Object... args) {
 		super(item, command);
 		this.args = args;
 	}

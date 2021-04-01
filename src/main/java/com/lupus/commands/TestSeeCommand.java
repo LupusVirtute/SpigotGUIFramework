@@ -13,7 +13,7 @@ import java.util.*;
 public class TestSeeCommand extends PlayerCommand {
 	public TestSeeCommand() {
 		super("testgui",
-				usage("/testgui","[guiName]"),
+				usage("/testgui", "[guiName]"),
 				"tests gui",
 				Arrays.asList(),
 				Arrays.asList("MCGUIFramework.see"),
@@ -22,7 +22,7 @@ public class TestSeeCommand extends PlayerCommand {
 
 	@Override
 	protected void run(Player player, ArgumentList args) throws Exception {
-		IGUI gui = MCGUIFramework.getManager().getGUI(args.getArg(String.class,0));
+		IGUI gui = MCGUIFramework.getManager().getGUI(args.getArg(String.class, 0));
 		if (gui == null) {
 			player.sendMessage("GUI DOESN'T EXIST");
 			return;

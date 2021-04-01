@@ -10,17 +10,18 @@ import java.util.Arrays;
 public class ListGUIsCommand extends LupusCommand {
 	public ListGUIsCommand() {
 		super("listgui",
-				usage("/listgui","[guiPage]"),
+				usage("/listgui", "[guiPage]"),
 				"lists",
 				Arrays.asList(),
 				Arrays.asList("MCGUIFramework.list"),
-				1);	}
+				1);
+	}
 
 	@Override
 	public void run(CommandSender commandSender, ArgumentList args) {
 		commandSender.sendMessage("--- GUI LIST ---");
 		for (String guiName : MCGUIFramework.getManager().getGUINames()) {
-			commandSender.sendMessage("- "+guiName);
+			commandSender.sendMessage("- " + guiName);
 		}
 		commandSender.sendMessage("--- GUI END  ---");
 	}

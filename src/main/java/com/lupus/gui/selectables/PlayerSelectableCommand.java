@@ -10,6 +10,7 @@ import java.util.List;
 
 public class PlayerSelectableCommand extends PlayerSelectableItem {
 	Command commandToRun;
+
 	public PlayerSelectableCommand(ItemStack item, Command command) {
 		super(true, item);
 		commandToRun = command;
@@ -18,9 +19,9 @@ public class PlayerSelectableCommand extends PlayerSelectableItem {
 	@Override
 	protected void execute(Player player, Object... args) {
 		List<String> arguments = new ArrayList<>();
-		for (int i=0;i<args.length;i++)
+		for (int i = 0; i < args.length; i++)
 			if (args[i] instanceof String)
-				arguments.add((String)args[i]);
-		commandToRun.execute(player,"",arguments.toArray(new String[0]));
+				arguments.add((String) args[i]);
+		commandToRun.execute(player, "", arguments.toArray(new String[0]));
 	}
 }

@@ -16,32 +16,37 @@ import java.util.UUID;
 public abstract class PlayerPaginator extends Paginator {
 	UUID[] players;
 	List<String> specialLore;
-	public PlayerPaginator(String invName,UUID[] players){
+
+	public PlayerPaginator(String invName, UUID[] players) {
 		super(invName);
 		this.players = players;
 		specialLore = new ArrayList<>();
 	}
+
 	@Override
 	public void onSlotInteraction(Player player, InventoryClickEvent e) {
 		int slot = e.getRawSlot();
-		if (slot > 35 || slot > players.length){
+		if (slot > 35 || slot > players.length) {
 			return;
 		}
-		onClickPlayer(player,Bukkit.getOfflinePlayer(players[slot]));
+		onClickPlayer(player, Bukkit.getOfflinePlayer(players[slot]));
 	}
+
 	public abstract void onClickPlayer(Player player, OfflinePlayer clickedOn);
 
-	public void addToSpecialLore(String specialLore){
+	public void addToSpecialLore(String specialLore) {
 		if (specialLore == null)
 			return;
 		this.specialLore.add(specialLore);
 	}
-	public void addToSpecialLore(List<String> specialLore){
+
+	public void addToSpecialLore(List<String> specialLore) {
 		if (specialLore == null)
 			return;
 		this.specialLore.addAll(specialLore);
 	}
-	public void addToSpecialLore(String[] specialLore){
+
+	public void addToSpecialLore(String[] specialLore) {
 		if (specialLore == null)
 			return;
 		addToSpecialLore(Arrays.asList(specialLore));
@@ -49,15 +54,15 @@ public abstract class PlayerPaginator extends Paginator {
 
 	@Override
 	public void setPage(int page) {
-		page = page*35+35;
-		for (int i=page-35,j=0;j<35 && i < players.length;i++,j++){
+		page = page * 35 + 35;
+		for (int i = page - 35, j = 0; j < 35 && i < players.length; i++, j++) {
 			inv.setItem(
-				j,
-				ItemUtility.setItemTitleAndLore(
-					SkullUtility.getSkullFromPlayer(players[i]),
-					"&9"+Bukkit.getOfflinePlayer(players[i]).getName(),
-					specialLore
-				)
+					j,
+					ItemUtility.setItemTitleAndLore(
+							SkullUtility.getSkullFromPlayer(players[i]),
+							"&9" + Bukkit.getOfflinePlayer(players[i]).getName(),
+							specialLore
+					)
 			);
 		}
 	}
